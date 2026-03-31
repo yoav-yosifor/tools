@@ -33,7 +33,7 @@ The oscilloscope is used for synchronized signal acquisition during wavelength s
 - **Flexible Connections**: Supports both GPIB and LAN (TCP/IP) connections  
 - **Repeated Sweeps**: Perform multiple sweep repetitions automatically  
 - **Data Acquisition**: Optional PicoScope integration for signal measurement  
-- **Auto-save**: Automatically saves sweep data to CSV files and plot images (PNG)
+- **Auto-save**: Automatically saves sweep data to CSV files  
 - **Parameter Validation**: Checks that wavelength ranges are within laser specs  
 - **Error Handling**: Robust error handling and instrument cleanup  
 
@@ -47,7 +47,6 @@ pip install pyvisa
 pip install picosdk
 pip install numpy
 pip install pandas
-pip install matplotlib
 ```
 
 ## Quick Start
@@ -211,21 +210,16 @@ finally:
 
 ## Output Data
 
-When `save_data=True`, the module automatically saves CSV files and plot images to a structured output folder:
+When `save_data=True`, the module automatically saves CSV files with the format:
 
-**Output folder**: `results/{wavelength_min}_{wavelength_max}-DD_MM_YYYY/`
+**Filename**: `{output_prefix}_rep{N}_{timestamp}.csv`
 
-**Files per sweep repetition**:
-- `{N}.csv` — Raw sweep data
-- `{N}.png` — Plot of the sweep data
-
-**Additional files**:
-- `sweep_log.txt` — Log of sweep parameters and results
-
-**CSV Columns**:
+**Columns**:
 - `Wavelength_nm`: Wavelength values in nanometers
 - `Channel_A_V`: PicoScope Channel A voltage data
 - `Channel_B_V`: PicoScope Channel B voltage data
+
+Example filename: `sweep_rep001_20240208_143022.csv`
 
 ## Return Value
 

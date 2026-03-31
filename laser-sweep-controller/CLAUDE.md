@@ -16,10 +16,10 @@ pip install -r requirements.txt
 python main.py
 
 # Run tests
-pytest tests/ -v
+pytest src/tests/ -v
 
 # Programmatic usage
-from laser_sweep import perform_laser_sweep
+from src.laser_sweep import perform_laser_sweep
 results, folder = perform_laser_sweep(wavelength_min=1540.0, wavelength_max=1560.0, power=10.0)
 ```
 
@@ -29,9 +29,9 @@ No build step. `examples/laser_sweep_examples.py` contains usage demonstrations.
 
 **Entry points:**
 - `main.py` — CLI with interactive parameter prompts and confirmation before sweep
-- `laser_sweep.py` — Core module; import `perform_laser_sweep()` or use `LaserController` directly
+- `src/laser_sweep.py` — Core module; import `perform_laser_sweep()` or use `LaserController` directly
 - `examples/laser_sweep_examples.py` — Example functions demonstrating all major features
-- `tests/test_laser_sweep.py` — Unit tests (no hardware required, fully mocked)
+- `src/tests/test_laser_sweep.py` — Unit tests (no hardware required, fully mocked)
 
 **Core flow:**
 1. `perform_laser_sweep()` is a convenience wrapper around `LaserController`
@@ -48,7 +48,7 @@ No build step. `examples/laser_sweep_examples.py` contains usage demonstrations.
 | 1400nm | LAN | `TCPIP::192.168.31.12::5000::SOCKET` |
 | 1300nm | LAN | `TCPIP::192.168.31.11::5000::SOCKET` |
 
-Laser configs are hard-coded in `LASER_CONFIGS` dict at the top of `laser_sweep.py` (lines 28–47). Modify there to add new lasers or update IP addresses.
+Laser configs are hard-coded in `LASER_CONFIGS` dict at the top of `src/laser_sweep.py` (lines 28–47). Modify there to add new lasers or update IP addresses.
 
 **PicoScope defaults:** 12-bit resolution, Channel A 5V DC, Channel B 2V DC, triggered on Channel A rising edge at 1V. Sampling interval is auto-calculated from sweep speed.
 
@@ -56,8 +56,8 @@ Laser configs are hard-coded in `LASER_CONFIGS` dict at the top of `laser_sweep.
 
 ## Key Files
 
-- `laser_sweep.py` — All instrument logic; `LaserController` class + `perform_laser_sweep()` function
+- `src/laser_sweep.py` — All instrument logic; `LaserController` class + `perform_laser_sweep()` function
 - `main.py` — Interactive CLI entry point
-- `tests/test_laser_sweep.py` — Unit tests; run with `pytest tests/ -v`
+- `src/tests/test_laser_sweep.py` — Unit tests; run with `pytest src/tests/ -v`
 - `examples/laser_sweep_examples.py` — Usage demonstrations
 - `docs/installation.md` — VISA backend, PicoScope drivers, GPIB driver setup per OS

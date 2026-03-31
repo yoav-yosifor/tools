@@ -1,2 +1,5 @@
-# Root conftest.py — ensures the project root is on sys.path so that
-# tests/ can import laser_sweep directly.
+# Root conftest.py — adds src/ to sys.path so tests can import laser_sweep directly.
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent / "src"))

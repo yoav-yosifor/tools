@@ -4,6 +4,11 @@ Simple example script for using the laser sweep module.
 This script demonstrates how to perform wavelength sweeps with various configurations.
 """
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+
 from laser_sweep import LaserController, perform_laser_sweep
 
 # BASIC USAGE - Simple sweep
